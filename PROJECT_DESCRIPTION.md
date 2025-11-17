@@ -1,6 +1,6 @@
 # Project Description
 
-**Deployed Frontend URL:** [To be deployed on Vercel - instructions below]
+**Deployed Frontend URL:** https://blogprogramsahilkhude117.vercel.app/
 
 **Solana Program ID:** M4h1dMsA4b25oM7GAR6ycYAhwc3fS9HVQoKh8hS1Une
 
@@ -149,4 +149,5 @@ cd frontend/blog
 yarn install
 yarn build
 # Deploy to Vercel or other provider
+
 ```
