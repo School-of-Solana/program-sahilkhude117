@@ -2,7 +2,7 @@
 
 import { Program, AnchorProvider, BN } from '@coral-xyz/anchor';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { PublicKey, SystemProgram } from '@solana/web3.js';
+import { PublicKey } from '@solana/web3.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { Blog } from '@/types/blog';
@@ -116,14 +116,11 @@ export function useBlogProgram() {
 
       const provider = getProvider();
       const program = new Program(IDL as Blog, provider);
-      const blogEntryPDA = getBlogEntryPDA(title, wallet.publicKey);
 
       const signature = await program.methods
         .createBlogEntry(title, content)
         .accounts({
-          blogEntry: blogEntryPDA,
           owner: wallet.publicKey,
-          systemProgram: SystemProgram.programId,
         })
         .rpc();
 
@@ -163,14 +160,11 @@ export function useBlogProgram() {
 
       const provider = getProvider();
       const program = new Program(IDL as Blog, provider);
-      const blogEntryPDA = getBlogEntryPDA(title, wallet.publicKey);
 
       const signature = await program.methods
         .updateBlogEntry(title, content)
         .accounts({
-          blogEntry: blogEntryPDA,
           owner: wallet.publicKey,
-          systemProgram: SystemProgram.programId,
         })
         .rpc();
 
@@ -209,14 +203,11 @@ export function useBlogProgram() {
 
       const provider = getProvider();
       const program = new Program(IDL as Blog, provider);
-      const blogEntryPDA = getBlogEntryPDA(title, wallet.publicKey);
 
       const signature = await program.methods
         .deleteBlogEntry(title)
         .accounts({
-          blogEntry: blogEntryPDA,
           owner: wallet.publicKey,
-          systemProgram: SystemProgram.programId,
         })
         .rpc();
 
