@@ -1,0 +1,246 @@
+{
+  "address": "M4h1dMsA4b25oM7GAR6ycYAhwc3fS9HVQoKh8hS1Une",
+  "metadata": {
+    "name": "blog",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_blog_entry",
+      "discriminator": [
+        49,
+        38,
+        245,
+        188,
+        173,
+        155,
+        102,
+        157
+      ],
+      "accounts": [
+        {
+          "name": "blog_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  103
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "title"
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "delete_blog_entry",
+      "discriminator": [
+        34,
+        46,
+        189,
+        76,
+        234,
+        254,
+        159,
+        219
+      ],
+      "accounts": [
+        {
+          "name": "blog_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  103
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "title"
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "update_blog_entry",
+      "discriminator": [
+        118,
+        136,
+        107,
+        134,
+        181,
+        231,
+        124,
+        180
+      ],
+      "accounts": [
+        {
+          "name": "blog_entry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  108,
+                  111,
+                  103
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "title"
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "_title",
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "BlogEntryState",
+      "discriminator": [
+        32,
+        194,
+        56,
+        21,
+        2,
+        166,
+        32,
+        91
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidTitle",
+      "msg": "Title must be between 1 and 50 characters"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidContent",
+      "msg": "Content must be between 1 and 1000 characters"
+    },
+    {
+      "code": 6002,
+      "name": "Unauthorized",
+      "msg": "Only the owner can modify or delete this blog entry"
+    }
+  ],
+  "types": [
+    {
+      "name": "BlogEntryState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "updated_at",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}
